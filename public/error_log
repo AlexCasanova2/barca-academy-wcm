@@ -1,0 +1,15 @@
+[09-Apr-2019 15:32:57 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\Admin\IndexController::index() in /home/tandemprojects/public_html/fcb/app/Http/Controllers/Admin/IndexController.php on line 30
+[11-Apr-2019 12:23:33 UTC] PHP Fatal error:  Cannot use Illuminate\Http\Request as Request because the name is already in use in /home/tandemprojects/public_html/fcb/app/Http/Controllers/Admin/IndexController.php on line 17
+[13-Apr-2019 08:46:49 UTC] PHP Fatal error:  Uncaught ErrorException: Array to string conversion in /home/tandemprojects/public_html/fcb/app/Http/Controllers/Admin/IndexController.php:103
+Stack trace:
+#0 /home/tandemprojects/public_html/fcb/app/Http/Controllers/Admin/IndexController.php(103): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Array to string...', '/home/tandempro...', 103, Array)
+#1 [internal function]: App\Http\Controllers\Admin\IndexController->livebase()
+#2 /home/tandemprojects/public_html/fcb/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(54): call_user_func_array(Array, Array)
+#3 /home/tandemprojects/public_html/fcb/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(45): Illuminate\Routing\Controller->callAction('livebase', Array)
+#4 /home/tandemprojects/public_html/fcb/vendor/laravel/framework/src/Illuminate/Routing/Route.php(212): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(App\Http\Controllers\Admin\IndexController), 'livebase')
+# in /home/tandemprojects/public_html/fcb/app/Http/Controllers/Admin/IndexController.php on line 103
+[13-Apr-2019 17:26:34 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/bitmad/public_html/fcb/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 233
+[13-Apr-2019 17:26:39 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/bitmad/public_html/fcb/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 233
+[13-Apr-2019 17:28:49 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/bitmad/public_html/fcb/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 233
+[13-Apr-2019 17:29:30 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/bitmad/public_html/fcb/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 233
+[13-Apr-2019 17:30:09 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/bitmad/public_html/fcb/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 233

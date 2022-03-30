@@ -1,0 +1,24 @@
+<span id="cal-slide-tick" style="display: none"></span>
+<div id="cal-slide-content" class="cal-event-list">
+	<ul class="unstyled list-unstyled">
+		<% _.each(events, function(event) { %>			
+			<li>
+				<div class="row small">							
+						<div class="col-xs-4">
+							<strong class="text-uppercase"><%= event.header %></strong><br />
+							
+							<span class="pull-left event <%= event['class'] %>"></span>&nbsp;<%= event.hora %>
+							<br/><br/>
+							<strong>Notes:</strong>
+							<br/>
+							<%= event.comments %></p>
+							
+						</div>						
+				</div>				
+			
+			</li>
+			<hr />
+			
+		<% }) %>
+	</ul>
+</div>

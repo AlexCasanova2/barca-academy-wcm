@@ -1,0 +1,337 @@
+@extends('public.layout.main')
+
+@section('extracss')
+<!-- aqui añadimos mas css para esta vista en concreto, si fuera necesario-->
+@endsection
+
+@section('content')
+<div class="main-area">
+	<div class="row">
+		<div class="col-xs-4 text-left">
+			<a  href="#main-carousel" role="button" data-slide="prev">
+			<img class="" height="30px" style="margin-bottom: 10px;" src="{{url('')}}/packages/images/footer1.png" />
+			</a>
+		</div>
+		<div class="col-xs-4 text-center">
+			<img class="" height="30px" style="margin-bottom: 10px;" src="{{url('')}}/packages/images/footer2.png" />
+		</div>
+		<div class="col-xs-4 text-right">
+			<a  href="#main-carousel" role="button" data-slide="next">
+			<img class=""  height="20px" style="margin-bottom: 10px;" src="{{url('')}}/packages/images/footer3.png" />
+			</a>
+		</div>
+	</div>
+	
+	<!-- main carousel -->
+	<div id="main-carousel" class="carousel slide fullh">
+	<!-- data-ride="carousel" data-interval="10000" data-keyboard="true" -->
+
+	<!-- Wrapper for slides -->
+	<div class="carousel-inner fullh" role="listbox">
+
+	@foreach($html->result as $key => $grup)
+		@if($key%2==0 && $key>0)
+			</div>
+		</div>
+	</div>
+	@endif
+	
+	@if($key%2==0 || $key==0)
+	<div class="fullh item @if($key==0) active @endif ">
+		<div class="results-col fullh">
+			<div class="row fullh cabecera">
+				@endif
+				<div class="col-xs-6 general  text-left group-{{$key}}" >
+					<label class="hidden">{{$grup[0]->cat_name}} -  GRUP {{$grup[0]->grupo}}</label>
+					<ul class="list-unstyled title-ul">
+						<li class="hidden">
+							<div class="row cabecera">
+								<div class="col-xs-1 text-right"><strong>Dia</strong></div>
+								<div class="col-xs-2 text-center"><strong>Hora</strong></div>
+								<div class="col-xs-2 text-center"><strong>Camp</strong></div>
+								<div class="col-xs-7 text-center ">
+									<div class="col-xs-5 text-center"><strong>Local</strong></div>
+									<div class="col-xs-1 text-center"><strong></strong></div>
+									<div class="col-xs-1 text-center"><strong></strong></div>
+									<div class="col-xs-5 text-center"><strong>Visitant</strong></div>
+								</div>
+							</div>
+						</li>							
+					</ul>
+					<ul class="list-unstyled partidos-ul">
+						@foreach($grup as $g => $match)
+						<li class="hidden">
+							<div class="row cabecera" data-match="{{$match->id}}">
+								<div class="col-xs-1 text-right"><span class="dia">{{$match->dia}}</span></div>
+								<div class="col-xs-2 hora text-center"><span class="hora">{{$match->hora}}</span></div>
+								<div class="col-xs-2 camp text-center"><span class="camp">{{$match->campo}}</span></div>
+								<div class="col-xs-7 text-center ">
+									<div class="row">
+										<div class="col-xs-5 text-center ">
+											<!-- CONTROLAR LONGITUD DE CARACTERES DEL STRING --> 
+											@if ( strlen($match->equipo1_name) >= 15 )
+											<div class="team-name1 white-shadow equipo1_name textolargo">
+												{{$match->equipo1_name}}
+											</div>
+											@else
+											<div class="team-name1 white-shadow equipo1_name">
+												{{$match->equipo1_name}}
+											</div>
+											@endif
+										</div>
+										<div class="col-xs-1 marcador text-center points1">
+												{{$match->points1}}				
+										</div>
+										<div class="col-xs-1 marcador text-center points2">
+												{{$match->points2}}
+										</div>
+										<div class="col-xs-5 text-center ">
+											<!--<div class="team-name1 white-shadow equipo2_name" >
+												{{$match->equipo2_name}}
+											</div>-->
+											<!-- CONTROLAR LONGITUD DE CARACTERES DEL STRING --> 
+											@if ( strlen($match->equipo2_name) >= 15 )
+												<div class="team-name1 white-shadow equipo2_name textolargo">
+													{{$match->equipo2_name}}
+												</div>
+											@else
+												<div class="team-name1 white-shadow equipo2_name">
+													{{$match->equipo2_name}}
+												</div>
+											@endif
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						@endforeach	
+					</ul>						
+					<label class="hidden">{{$grup[0]->cat_name}} - RANKING {{$grup[0]->grupo}}</label>
+					<ul class="list-unstyled title-ul ranking-title">
+						<li class="hidden">
+							<div class="row cabecera">
+								<div class="col-xs-1 ranking-cab text-right"></div>
+								<div class="col-xs-3 ranking-cab text-left">Equip</div>
+								<div class="col-xs-1 ranking-cab text-center">PJ</div>
+								<div class="col-xs-1 ranking-cab text-right">PG</div>
+								<div class="col-xs-1 ranking-cab text-center">PE</div>
+								<div class="col-xs-1 ranking-cab text-left">PP</div>
+								<div class="col-xs-1 ranking-cab text-right">GF</div>
+								<div class="col-xs-1 ranking-cab text-center">GC</div>
+								<div class="col-xs-1 ranking-cab text-left">+/-</span></div>
+								<div class="col-xs-1 ranking-cab text-center">PTS</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="list-unstyled ranking-ul" data-categoria="{{$grup[0]->cat_name}}" data-grupo="{{$grup[0]->grupo}}">
+						<div style="margin-bottom: 190px"></div>
+					</ul>
+					<br/>
+				</div>
+				@endforeach			
+			</div>
+		</div>
+	</div>			
+	@foreach($html->resultfinal as $key => $grup)
+		@if($key%6==0 && $key>0)
+			</div>
+		</div>
+	</div>
+		@endif
+		@if($key%6==0 || $key==0)
+		<div class="fullh item @if($key==0) active @endif ">
+			<div class="results-col fullh">
+				<div class="row fullh">
+					@endif
+					<div class="col-xs-6  text-left vertical-margin">
+						<label class="hidden">{{$grup[0]->cat_name}} -  GRUP {{$grup[0]->grupo}}</label>
+						<ul class="list-unstyled title-ul">
+							<li class="hidden">
+								<div class="row ">
+									<div class="col-xs-1 text-right"><strong>Dia</strong></div>
+									<div class="col-xs-2 text-center"><strong>Hora</strong></div>
+									<div class="col-xs-2 text-center"><strong>Camp</strong></div>
+									<div class="col-xs-7 text-center "></div>
+								</div>
+							</li>
+						</ul>
+						<ul class="list-unstyled partidos-ul">
+							@foreach($grup as $g => $match)
+							<li class="hidden">
+								<div class="row partido" data-match="{{$match->id}}">
+									<div class="col-xs-1 text-right"><span class="dia">{{$match->dia}}</span></div>
+									<div class="col-xs-2 text-center"><span class="hora">{{$match->hora}}</span></div>
+									<div class="col-xs-2 text-center"><span class="camp">{{$match->campo}}</span></div>
+									<div class="col-xs-7 text-center ">
+										<div class="row">
+											<div class="col-xs-5 equip-team text-center ">
+												<!-- <div class="team-name1 white-shadow equipo1_name">
+													{{$match->equipo1_name}}															
+												</div> -->
+
+												@if ( strlen($match->equipo1_name) >= 15 )
+												<div class="team-name1 white-shadow equipo1_name textolargo">
+													{{$match->equipo1_name}}
+												</div>
+												@else
+												<div class="team-name1 white-shadow equipo1_name">
+													{{$match->equipo1_name}}
+												</div>
+												@endif
+
+											</div>
+											<div class="col-xs-1 text-center points1">
+													{{$match->points1}}
+											</div>
+											<div class="col-xs-1 text-center points2">
+													{{$match->points2}}
+											</div>
+											<div class="col-xs-5 text-center ">
+												<!-- <div class="team-name1 white-shadow equipo2_name" >
+													{{$match->equipo2_name}}
+												</div> -->
+												@if ( strlen($match->equipo2_name) >= 15 )
+												<div class="team-name1 white-shadow equipo2_name textolargo">
+													{{$match->equipo2_name}}
+												</div>
+												@else
+												<div class="team-name2 white-shadow equipo2_name">
+													{{$match->equipo2_name}}
+												</div>
+												@endif
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+							@endforeach	
+						</ul>
+						<br/>
+					</div>
+					@endforeach			
+				</div>
+			</div>
+		</div>			
+	</div>
+</div><!-- END main carousel -->
+</div>
+
+@endsection
+
+@section('extrajs')
+<!-- aqui añadimos mas JS para esta vista en concreto, si fuera necesario-->
+<script type="text/javascript">
+		document.body.style.zoom = 1.7;
+		
+		jQuery(document).ready(function(){
+			persiana();
+			var $carousel = jQuery('#main-carousel');
+			$carousel.carousel({ interval:  10000 , keyboard:true });
+			$carousel.bind('slid.bs.carousel', function (e) {
+					persiana();
+			});
+		});
+
+		function persiana(){
+			getRanking();
+			getPoints();
+			
+			jQuery('.carousel-inner .item .partidos-ul > li').attr('class','hidden');
+			jQuery.each(jQuery('.carousel-inner .item.active .partidos-ul > li'), function(i, el){
+				setTimeout(function(){
+					jQuery(el).removeClass('hidden').addClass('animated fadeInDown');
+				},( i * 50 ));
+			});
+			
+			jQuery.each(jQuery('.carousel-inner .item.active label'), function(i, el){
+				setTimeout(function(){
+					jQuery(el).removeClass('hidden').addClass('animated fadeInDown');
+				},( i * 50 ));
+			});
+			
+			jQuery.each(jQuery('.carousel-inner .item.active .ranking-ul > li'), function(i, el){
+				setTimeout(function(){
+					jQuery(el).removeClass('hidden').addClass('animated fadeInDown');
+				},( i * 50 ));
+			});
+			jQuery.each(jQuery('.carousel-inner .item.active .title-ul > li'), function(i, el){
+				setTimeout(function(){
+					jQuery(el).removeClass('hidden').addClass('animated fadeInDown');
+				},( i * 50 ));
+			});
+		}
+		
+		function getPoints(){
+			jQuery.each(jQuery('.carousel-inner .item.active .partidos-ul .partido'), function (i, el){
+				
+				var match = jQuery(el).data('match');
+				params = { match:match}
+				jQuery.ajax({
+				  method: "GET",
+				  url: "/ws/live",
+				  data: params
+				}).done(function( msg ) {
+					if(msg.SUCCESS){
+						var match = msg.VALUE;
+						$.each( msg.VALUE,function(param,val){
+							jQuery(el).find('.'+param).html(val);
+						});
+					}else{
+						//console.log('error');
+					}
+			  });
+			});
+		}
+
+		function getRanking(){
+		
+		jQuery.each(jQuery('.carousel-inner .item.active .ranking-ul'), function (i, el){
+			
+			var categoria = jQuery(el).data('categoria');
+			var grupo = jQuery(el).data('grupo');
+			
+			//console.log(ranking);
+			params = { categoria:categoria,grupo:grupo}
+			jQuery.ajax({
+			  method: "GET",
+			  url: "/ws/wsranking",
+			  data: params
+			}).done(function( msg ) {
+				if(msg.SUCCESS){
+					var match = msg.VALUE;
+					var html = '';
+					$.each( msg.VALUE,function(param,val){
+						html+='<li class="hidden">';
+						html+='<div class="row ranking" >';
+						html+='<div class="col-xs-1 ranking-cab text-center white-shadow"><span class="orden">'+val.orden+'</span></div>';
+						if(val.equipo.length >= 15){
+							html+='<div class="col-xs-3 ranking-cab text-left white-shadow"><span class="equipo textolargo">'+val.equipo+'</span></div>';
+						}else{
+							html+='<div class="col-xs-3 ranking-cab text-left white-shadow"><span class="equipo">'+val.equipo+'</span></div>';
+						}
+						html+='<div class="col-xs-1 ranking-cab text-center"><span class="PJ">'+val.PJ+'</span></div>';
+						html+='<div class="col-xs-1 ranking-cab pg text-right"><span class="PG">'+val.PG+'</span></div>';
+						html+='<div class="col-xs-1 ranking-cab text-center"><span class="PE">'+val.PE+'</span></div>';
+						html+='<div class="col-xs-1 ranking-cab pp text-left"><span class="PP">'+val.PP+'</span></div>';
+						html+='<div class="col-xs-1 ranking-cab pg text-right"><span class="GF">'+val.GF+'</span></div>';
+						html+='<div class="col-xs-1 ranking-cab text-center"><span class="GC">'+val.GC+'</span></div>';
+						html+='<div class="col-xs-1 ranking-cab pp text-left"><span class="COEFICIENTE">'+val.COEFICIENTE+'</span></div>';	
+						html+='<div class="col-xs-1 ranking-cab text-center"><span class="PTS">'+val.PTS+'</span></div>';			
+						html+='</div>';
+						html+='</li>';
+					});
+					
+					if(msg.VALUE.length!=0){
+						jQuery(el).html(html);
+						jQuery(el).find('li').removeClass('hidden').addClass('animated fadeInDown');
+					}else{
+						jQuery(el).html('');
+					}
+				}else{
+					//console.log('error');
+				}
+		  });
+		});
+	}
+	</script>
+@endsection

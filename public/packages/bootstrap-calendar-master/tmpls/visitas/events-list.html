@@ -1,0 +1,84 @@
+<span id="cal-slide-tick" style="display: none"></span>
+<div id="cal-slide-content" class="cal-event-list">
+	<ul class="unstyled list-unstyled">
+		<% _.each(events, function(event) { %>	
+			<% if (event.tipo==2) { %>
+				<li>
+				<div class="row small">							
+	
+						<div class="col-xs-4">		
+								<p><%= event.title %></p>
+						</div>	
+						<div class="col-xs-4">
+							<p>
+								<a href="javascript:;" onClick="removeDay(<%= event.day.id %>)" ><i class="fa fa-trash"></i> Eliminar</a>
+							</p>						
+					
+							
+						</div>											
+				</div>				
+			
+			</li>
+			<hr />
+			<% } %>	
+			<% if (event.tipo==3) { %>
+				<li>
+				<div class="row small">							
+	
+						<div class="col-xs-4">		
+								<p><%= event.title %></p>	
+						</div>	
+						<div class="col-xs-4">
+							<p>
+								<a href="javascript:;" onClick="removeHour(<%= event.hour.id %>)" ><i class="fa fa-trash"></i> Eliminar</a>
+							</p>						
+						</div>											
+				</div>				
+			
+			</li>
+			<hr />
+			<% } %>					
+			<% if (event.tipo==1) { %>	
+			<li>
+				<div class="row small">							
+	
+						<div class="col-xs-4">	
+							<br/>
+							<legend style="margin-top: 0;">Pacient:</legend>
+							<br/>
+							<% if (event.user.image) { %>
+								<img src="<%= event.user.image %>" width="50px" /><br /><br />
+							<% } %>	
+							<%= event.user.first_name %> <%= event.user.last_name %>  - ( <a href="/admin/pacient/<%= event.user.id %>"><%= event.user.email %></a> )
+							<br/>
+							<br/>
+							<legend style="margin-top: 0;">Notes:</legend>
+							<br/>
+							<%= event.comments %>
+							<br/>
+							<br/>
+													
+						</div>	
+						<div class="col-xs-4">
+							<strong class="text-uppercase"><%= event.header %></strong><br />
+							<p>
+								<strong><i class="fa fa-clock-o"></i> Hora visita: <%= event.hora %>h</strong> (<a href="/admin/visita/<%= event.visita.id %>">Editar</a>)
+							</p>
+							<p>
+								<a href="javascript:;" onClick="notificaVisita(<%= event.visita.id %>)" ><i class="fa fa-whatsapp"></i> Notificar</a>
+							</p>
+					
+							<p>
+								<a href="javascript:;" onClick="removeVisita(<%= event.visita.id %>,'<%= event.visita.visita_date %>')" ><i class="fa fa-trash"></i> Eliminar</a>
+							</p>
+							
+							
+						</div>											
+				</div>				
+			
+			</li>
+			<hr />
+			<% } %>		
+		<% }) %>
+	</ul>
+</div>
